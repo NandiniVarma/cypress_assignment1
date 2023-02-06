@@ -1,0 +1,14 @@
+{
+  "name": "cypress_latest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nandini",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^12.5.1"
+  }
+}
