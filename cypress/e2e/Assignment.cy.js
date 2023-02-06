@@ -1,4 +1,4 @@
-describe('Home insurance Validation', function () {
+describe('First Assignmnet', function () {
     /***
      * Description: Create an automated test project in Cypress test framework with the following spec details:
      * Visit page “https://www.saucedemo.com/” - Done
