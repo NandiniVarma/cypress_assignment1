@@ -28,7 +28,7 @@ describe('Saucedemotest', function () {
         cy.window().then(win => {
             win.localStorage.setItem('authenticated', true)
         })
-
+git 
 
     })
 
