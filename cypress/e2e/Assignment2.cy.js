@@ -1,4 +1,4 @@
-describe('Home insurance Validation', function () {
+describe('Assignment', function () {
     /***
      * Description: Create an automated test project in Cypress test framework with the following spec details:
      * Visit page “https://www.saucedemo.com/” - Done
@@ -13,42 +13,33 @@ describe('Home insurance Validation', function () {
      * Validate the product has been added to the shopping cart.
      */
 
-    before("Iterate",()=>{
-        cy.visit('https://www.saucedemo.com/')
-        cy.get('[placeholder="Username"]').should('be.visible').type("standard_user")
-        cy.get('[placeholder="Password"]').should('exist').type("secret_sauce")
-        cy.get('[type="submit"]').should('be.visible').click() 
-    })
-
-
-    it.skip('I login page with standard user', () => {
+    before("Login",()=>{
 
         cy.visit('https://www.saucedemo.com/')
-        cy.get('[placeholder="Username"]').should('be.visible').type("standard_user")
-        cy.get('[placeholder="Password"]').should('exist').type("secret_sauce")
-        cy.get('[type="submit"]').should('be.visible').click()
+        cy.get('[placeholder="Username"]').type('standard_user')
+        cy.get('[placeholder="Password"]').type('secret_sauce')
+        cy.get('[type="submit"]').click()
+
+        cy.window().then(win => {
+            win.localStorage.setItem('authenticated', true)
+        })
+
+
     })
+    
+
+
 //let ,var, const
     it('I validate login is successful', () => {
 
         cy.url().should('include', 'inventory.html')
-        cy.get('.title').should('have.text', "Products") // implicit Assertion
-        //Explicit Assertion
-        cy.get('.title').then((text) => {
-            let actualTitle = text.text()
-            //Syntax : expect(actText).to.eq(expectedText)
-            expect(actualTitle).equal('Products')
-
+       
+         cy.get('.title').should('have.text', "Products") // implicit Assertion
+       
         })
 
-    })
-
-    it('I filter products by ‘Price (high to low)’', () => {
+    it('I sort the  products price from (high to low)’', () => {
         cy.get('.product_sort_container').select('hilo')
-    })
-
-    it('I validate the products have been filtered by price high to low', () => {
-//using value // using index
         cy.get('.inventory_item_price').each(($el, index, list) => {
             let temp = 0
             let currentPrice = $el.text().replace("$", '')
@@ -59,18 +50,12 @@ describe('Home insurance Validation', function () {
                 cy.log("Price is not from High to Low")
                 expect(0).eq(1)
             }
-
-        })
-
-
     })
+})
 
-    it('I filter products by ‘Price (low to high)’', () => {
+  
+it('I sort the product price from(low to high)’', () => {
         cy.get('.product_sort_container').select('lohi')
-    })
-
-    it('I validate the products have been filtered by price low to high', () => {
-//using value // using index
         cy.get('.inventory_item_price').each(($el, index, list) => {
             let temp = 0
             let currentPrice = $el.text().replace("$", '')
@@ -87,12 +72,15 @@ describe('Home insurance Validation', function () {
 
     })
 
+
+
+   
+//using value // using index
+        
     it('Add a product to cart', () => {
 
         cy.get('[name="add-to-cart-sauce-labs-onesie"]').click()
-    })
-
-    it('I validate the product has been added to the shopping cart', () => {
+    
 
         cy.get('[name="add-to-cart-sauce-labs-onesie"]').click()
         cy.get('.shopping_cart_link').should('be.visible').click()
