@@ -1,8 +1,7 @@
-const chai = require('chai');
-expect = chai.expect;
-const chaiSorted = require('chai-sorted');
+var chai = require("chai"),
+    expect = chai.expect;
 
-chai.use(chaiSorted);
+chai.use(require("chai-sorted"));
 describe('Saucedemotest', function () {
     /***
      * Description: Create an automated test project in Cypress test framework with the following spec details:
@@ -19,7 +18,6 @@ describe('Saucedemotest', function () {
      */
 
     beforeEach("Login", () => {
-
         cy.visit('https://www.saucedemo.com/')
         cy.get('[placeholder="Username"]').type('standard_user')
         cy.get('[placeholder="Password"]').type('secret_sauce')
@@ -28,7 +26,6 @@ describe('Saucedemotest', function () {
         cy.window().then(win => {
             win.localStorage.setItem('authenticated', true)
         })
-git 
 
     })
 
@@ -65,7 +62,7 @@ git
                 const modifiedArray = originalPrices.map(item => item.replace('$', ''))
 
                 const modifiedArrayToInt = modifiedArray.map(item => Number(item))
-                expect(modifiedArrayToInt).sorted()
+                chai.expect(modifiedArrayToInt).sorted()
 
             })
 

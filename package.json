@@ -9,6 +9,8 @@
   "author": "Nandini",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.7",
+    "chai-sorted": "^0.2.0",
     "cypress": "^12.5.1"
   }
 }
